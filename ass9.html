@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grade Management</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: navy;
+        }
+
+        form {
+            background-color: white;
+            max-width: 350px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: navy;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: navy;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Grade Management System</h1>
+
+    <form id="gradeForm">
+        <label>Student Name:</label>
+        <input type="text" id="name" required>
+
+        <label>Roll Number:</label>
+        <input type="number" id="roll" required>
+
+        <label>Subject 1 Marks:</label>
+        <input type="number" id="m1" min="0" max="100" required>
+
+        <label>Subject 2 Marks:</label>
+        <input type="number" id="m2" min="0" max="100" required>
+
+        <label>Subject 3 Marks:</label>
+        <input type="number" id="m3" min="0" max="100" required>
+
+        <button type="submit">Calculate Grade</button>
+    </form>
+
+    <h2>Student Grades</h2>
+
+    <table id="gradeTable">
+        <tr>
+            <th>Roll No.</th>
+            <th>Name</th>
+            <th>Total</th>
+            <th>Percentage</th>
+            <th>Grade</th>
+        </tr>
+    </table>
+
+    <script>
+        let form = document.getElementById("gradeForm");
+        let table = document.getElementById("gradeTable");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let roll = document.getElementById("roll").value;
+
+            let m1 = Number(document.getElementById("m1").value);
+            let m2 = Number(document.getElementById("m2").value);
+            let m3 = Number(document.getElementById("m3").value);
+
+            let total = m1 + m2 + m3;
+            let percentage = total / 300 * 100;
+            let grade;
+
+            if (percentage >= 90) {
+                grade = "A";
+            } else if (percentage >= 75) {
+                grade = "B";
+            } else if (percentage >= 60) {
+                grade = "C";
+            } else if (percentage >= 40) {
+                grade = "D";
+            } else {
+                grade = "Fail";
+            }
+
+            let row = table.insertRow();
+            row.insertCell(0).innerText = roll;
+            row.insertCell(1).innerText = name;
+            row.insertCell(2).innerText = total;
+            row.insertCell(3).innerText = percentage.toFixed(2) + "%";
+            row.insertCell(4).innerText = grade;
+
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>

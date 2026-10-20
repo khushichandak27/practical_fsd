@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            margin: 0;
+        }
+
+        header {
+            background-color: navy;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav {
+            background-color: black;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: navy;
+            color: white;
+        }
+
+        form {
+            background-color: white;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: navy;
+            color: white;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #message {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 8px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Library Management System</h1>
+        <p>Explore and issue books</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#books">Available Books</a>
+        <a href="#issue">Issue Book</a>
+    </nav>
+
+    <section id="home">
+        <h2>Welcome to the Library</h2>
+        <p>View available books and submit a book issue request.</p>
+    </section>
+
+    <section id="books">
+        <h2>Available Books</h2>
+
+        <table>
+            <tr>
+                <th>Book ID</th>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>101</td>
+                <td>Introduction to AI</td>
+                <td>Stuart Russell</td>
+                <td>Available</td>
+            </tr>
+
+            <tr>
+                <td>102</td>
+                <td>Python Programming</td>
+                <td>Guido van Rossum</td>
+                <td>Available</td>
+            </tr>
+
+            <tr>
+                <td>103</td>
+                <td>Data Science Basics</td>
+                <td>John Smith</td>
+                <td>Available</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="issue">
+        <h2 style="text-align:center;">Book Issue Form</h2>
+
+        <form id="issueForm">
+            <label>Student Name:</label>
+            <input type="text" id="student" placeholder="Enter your name" required>
+
+            <label>Book Name:</label>
+            <select id="book" required>
+                <option value="">Select a book</option>
+                <option>Introduction to AI</option>
+                <option>Python Programming</option>
+                <option>Data Science Basics</option>
+            </select>
+
+            <label>Issue Date:</label>
+            <input type="date" id="date" required>
+
+            <button type="submit">Issue Book</button>
+        </form>
+
+        <p id="message"></p>
+    </section>
+
+    <script>
+        let form = document.getElementById("issueForm");
+        let message = document.getElementById("message");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();f
+
+            let student = document.getElementById("student").value;
+            let book = document.getElementById("book").value;
+
+            message.innerText =
+                "Book issue request submitted successfully for " +
+                student + " - " + book + "!";
+
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>

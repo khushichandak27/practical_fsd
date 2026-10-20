@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exam Result Display System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: navy;
+        }
+
+        form, #result {
+            background-color: white;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: navy;
+            color: white;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            display: none;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            form, #result {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Exam Result Display System</h1>
+
+    <form id="resultForm">
+        <label>Student Name:</label>
+        <input type="text" id="name" required>
+
+        <label>Roll Number:</label>
+        <input type="number" id="roll" required>
+
+        <label>Subject 1 Marks:</label>
+        <input type="number" id="m1" min="0" max="100" required>
+
+        <label>Subject 2 Marks:</label>
+        <input type="number" id="m2" min="0" max="100" required>
+
+        <label>Subject 3 Marks:</label>
+        <input type="number" id="m3" min="0" max="100" required>
+
+        <button type="submit">Display Result</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        let form = document.getElementById("resultForm");
+        let result = document.getElementById("result");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let roll = document.getElementById("roll").value;
+
+            let m1 = Number(document.getElementById("m1").value);
+            let m2 = Number(document.getElementById("m2").value);
+            let m3 = Number(document.getElementById("m3").value);
+
+            let total = m1 + m2 + m3;
+            let percentage = total / 300 * 100;
+
+            let status;
+
+            if (m1 >= 35 && m2 >= 35 && m3 >= 35) {
+                status = "PASS";
+            } else {
+                status = "FAIL";
+            }
+
+            result.style.display = "block";
+
+            result.innerHTML =
+                "<h2>Exam Result</h2>" +
+                "Name: " + name + "<br>" +
+                "Roll Number: " + roll + "<br>" +
+                "Subject 1: " + m1 + "<br>" +
+                "Subject 2: " + m2 + "<br>" +
+                "Subject 3: " + m3 + "<br>" +
+                "Total Marks: " + total + " / 300<br>" +
+                "Percentage: " + percentage.toFixed(2) + "%<br>" +
+                "Result: <b>" + status + "</b>";
+        });
+    </script>
+
+</body>
+</html>
